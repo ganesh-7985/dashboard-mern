@@ -25,3 +25,13 @@ app.use("/client",clientRoutes);
 app.use("/general",generalRoutes);
 app.use("/management",managementRoutes);
 app.use("/sales",salesRoutes);
+
+const PORT=process.env.PORT || 3000;
+mongoose.connect(process.env.MONGO_URL,{
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
+}).then(()=>{
+    app.listen(PORT,()=>console.log(`Connected! Server Port:${PORT}`));
+}).catch((error)=>{
+    console.log("Error In connecting Database",error)
+})
